@@ -14,10 +14,13 @@ console.log(primeiroFilhoFilho);
 
 let primeiroNo = elementoOndeVoceEsta.nextSibling;
 
-/* 
+let terceiroFilho = elementoOndeVoceEsta.nextElementSibling;
+console.log(terceiroFilho);
 
-// 7. Agora acesse o terceiroFilho a partir de elementoOndeVoceEsta.
-const terceiroFilho = elementoOndeVoceEsta.nextElementSibling;
+let terceiroFilho2 = pai.lastElementChild.previousElementSibling;
+console.log(terceiroFilho2);
+
+/* 
 
 // 8. Agora acesse o terceiroFilho a partir de pai.
 const terceiroFilho2 = pai.lastElementChild.previousElementSibling; */
