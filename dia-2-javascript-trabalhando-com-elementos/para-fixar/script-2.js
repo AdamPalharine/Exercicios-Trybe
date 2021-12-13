@@ -1,3 +1,5 @@
+/* PARTE 1 */
+
 let ondeEsta = document.getElementById('elementoOndeVoceEsta');
 
 let elementoPai = document.getElementById('elementoOndeVoceEsta').parentElement;
@@ -20,7 +22,4 @@ console.log(terceiroFilho);
 let terceiroFilho2 = pai.lastElementChild.previousElementSibling;
 console.log(terceiroFilho2);
 
-/* 
-
-// 8. Agora acesse o terceiroFilho a partir de pai.
-const terceiroFilho2 = pai.lastElementChild.previousElementSibling; */
+/* PARTE 2 */
