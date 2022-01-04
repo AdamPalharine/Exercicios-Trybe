@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title> Titulo da pagina </title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+    <h1> Formulário de Curiculo </h1>
+        <fieldset>
+          <label for="nome"> Nome Completo </label>
+          <input type="text" name="nome" maxlength="40" required>
+          <br>
+          <label for="e-mail"> E-mail </label>
+          <input type="email" name="e-mail" maxlength="50" required>
+          <br>
+          <label for="cpf"> CPF </label>
+          <input type="text" name="cpf" maxlength="11" required>
+          <br>
+          <label for="endereço"> Endereço </label>
+          <input type="text" name="endereço" maxlength="200" required>
+          <label for="moradia">
+          <input type="radio" name="moradia" required> Casa
+          <input type="radio" name="moradia" required> Apartamento
+          </label>
+          <br>            
+          <label for="cidade"> Cidade </label>
+          <input type="text" name="cidade" maxlength="28" required>          
+          <label for="estado" id="lista"> Estado </label>
+          <select name="estado" required>
+            <option></option>
+          <br>                        
+        </fieldset>
+        <fieldset>
+          <textarea> </textarea>
+        </fieldset>
+	</body>
+	
+	<script src="script.js"></script>
+</html>

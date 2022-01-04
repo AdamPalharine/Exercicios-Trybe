@@ -1,0 +1,1 @@
+const listaEstado = document.getElementById('lista');
