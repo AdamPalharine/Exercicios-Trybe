@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title> Titulo da pagina </title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+
+	<body>
+    <h1> Formulário de Curiculo </h1>
+    <br> 
+
+        <fieldset class="bloco">
+          <h2> Informações Básicas </h2>
+          <div class="form">
+          <label for="nome"> Nome Completo </label>
+          <input type="text" name="nome" maxlength="40" required>
+          </div>
+          <br>
+          
+          <div class="form">
+          <label for="e-mail"> E-mail </label>
+          <input type="email" name="e-mail" maxlength="50" required>
+          </div>
+          <br>
+
+          <div class="form">
+          <label for="cpf"> CPF </label>
+          <input type="text" name="cpf" maxlength="11" required>
+          </div>
+          <br>
+
+          <div class="form">
+          <label for="endereço"> Endereço </label>
+          <input type="text" name="endereço" maxlength="200" required>
+          <label for="moradia">
+          <input type="radio" name="moradia" required> Casa
+          <input type="radio" name="moradia" required> Apartamento
+          </label>
+          </div>
+          <br>
+          
+          <div class="form">
+          <label for="cidade"> Cidade </label>
+          <input type="text" name="cidade" maxlength="28" required>
+
+          <label for="estado" > Estado </label>
+          <select name="estado" id="lista" required> </select>
+          </div>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset class="bloco">
+          <h2> Informações Adicionais </h2>
+
+          <div class="form">
+          <label for="resumo"> Um pouco sobre você </label>
+          <br> 
+          <textarea name="resumo" cols="30" rows="10" maxlength="1000" required> </textarea>
+          </div>
+          <br>
+
+          <div class="form">
+          <label for="cargo"> Cargo </label>
+          <input type="text" name="cargo" maxlength="40" required>
+          <label for="descricao"> Descrição do Cargo </label>
+          <input type="text" name="descricao" maxlength="500" required>
+          </div>
+          <br>
+
+          <div class="form">
+          <label for="data"> Data de Inicio </label>
+          <input type="date" name="data" required>
+          </div>  
+          <br>
+
+          <br> 
+          <button id="limpar"> Limpar </button>
+                    
+        </fieldset>
+      </div>
+	</body>
+	
+	<script src="script.js"></script>
+</html>
