@@ -4,9 +4,25 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: rgb(191, 202, 223);
+}
+
+h1 {
+  margin-top: 10px;
+  text-align: center;
+}
+
+h2 {
+  text-decoration: underline;
+  text-align: center;
+}
+
 .bloco {
   margin: 40, 0;
-  padding: 5px;
+  padding: 10px;
   margin-left: auto;
   margin-right: auto;
+  background-color: azure;
+  width: 80%;
 }
