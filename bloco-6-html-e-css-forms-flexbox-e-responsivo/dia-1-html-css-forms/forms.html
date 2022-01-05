@@ -7,7 +7,8 @@
 	</head>
 	<body>
     <h1> Formulário de Curiculo </h1>
-        <fieldset>
+        <fieldset class="bloco">
+          <h1> Informações Básicas </h1>
           <label for="nome"> Nome Completo </label>
           <input type="text" name="nome" maxlength="40" required>
           <br>
@@ -29,11 +30,32 @@
           <label for="estado" id="lista"> Estado </label>
           <select name="estado" required>
             <option></option>
-          <br>                        
+          </select>                        
         </fieldset>
-        <fieldset>
-          <textarea> </textarea>
+
+        <br>
+
+        <fieldset class="bloco">
+          <h1> Curriculo </h1>
+          <label for="resumo"> Um pouco sobre você </label>
+          <br> 
+          <textarea name="resumo" cols="30" rows="10" maxlength="1000" required> </textarea>
+          <br>
+          <label for="cargo"> Cargo </label>
+          <input type="text" name="cargo" maxlength="40" required>
+          <label for="descricao"> Descrição do Cargo </label>
+          <input type="text" name="descricao" maxlength="500" required>
+          <br>
+          <label for="data"> Data de Inicio </label>
+          <input type="date" name="data" required>
+            
+          <br>
+          <br> 
+          <button id="limpar"> Limpar </button>
+          
+          
         </fieldset>
+
 	</body>
 	
 	<script src="script.js"></script>

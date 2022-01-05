@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bloco {
+  margin: 40, 0;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
