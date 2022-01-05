@@ -9,28 +9,42 @@
     <h1> Formulário de Curiculo </h1>
         <fieldset class="bloco">
           <h1> Informações Básicas </h1>
+          <div class="form">
           <label for="nome"> Nome Completo </label>
           <input type="text" name="nome" maxlength="40" required>
+          </div>
           <br>
+          
+          <div class="form">
           <label for="e-mail"> E-mail </label>
           <input type="email" name="e-mail" maxlength="50" required>
+          </div>
           <br>
+
+          <div class="form">
           <label for="cpf"> CPF </label>
           <input type="text" name="cpf" maxlength="11" required>
+          </div>
           <br>
+
+          <div class="form">
           <label for="endereço"> Endereço </label>
           <input type="text" name="endereço" maxlength="200" required>
           <label for="moradia">
           <input type="radio" name="moradia" required> Casa
           <input type="radio" name="moradia" required> Apartamento
           </label>
-          <br>            
+          </div>
+          <br>
+          
+          <div class="form">
           <label for="cidade"> Cidade </label>
           <input type="text" name="cidade" maxlength="28" required>          
           <label for="estado" id="lista"> Estado </label>
           <select name="estado" required>
             <option></option>
-          </select>                        
+          </select>
+          </div>                        
         </fieldset>
 
         <br>
@@ -52,10 +66,9 @@
           <br>
           <br> 
           <button id="limpar"> Limpar </button>
-          
-          
+                    
         </fieldset>
-
+      </div>
 	</body>
 	
 	<script src="script.js"></script>
