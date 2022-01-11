@@ -1,0 +1,106 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  box-sizing: inherit;
+}
+  
+/* Médio */
+@media screen and (min-width: 641px) and (max-width: 1007px) {
+  body {
+      background-color: rgb(152, 228, 133);
+  }
+}
+
+header {
+  background-color: rgb(196, 196, 240);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between; /* Só afeta os filhos do header o <p> e o <nav> */
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+}
+
+header li {
+  border: 1px solid rgb(7, 37, 16);
+  border-radius: 3px;
+  background-color: white;
+  text-align: center;
+  padding: 5px 30px;
+  list-style-type: none;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+li:hover {
+  opacity: 1;
+}
+
+header p {
+  font-size: 200%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;      
+}
+
+.aside-one {
+  display: flex;
+  width: 50%;
+  margin-top: 16%;
+  margin-left: 5%;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 10px;
+  border: 2px solid black;
+  background-color: rgb(210, 247, 247);
+}
+
+.aside-one h2 {
+  padding: 0 10px;
+}
+
+.aside-one li {
+  list-style-type: none;
+}
+
+.aside-two {
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 2%;
+  margin-left: 5%;
+  border: 2px solid black;
+  background-color: rgb(210, 247, 247);
+}
+
+.aside-two h2 {
+  padding: 0 10px;
+}
+
+.aside-two li {
+  list-style-type: none;
+}
+
+/* Pequeno */
+@media screen and (max-width: 640px) {
+    body {
+        background-color: rgb(228, 133, 220);
+    }
+}
+
+/* Grande */
+@media screen and (min-width: 1008px) {
+  body {
+      background-color: rgb(228, 226, 133);
+  }
+}
