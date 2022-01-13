@@ -9,7 +9,7 @@ function createColorsOptions() {
 
   for (let i = 0; i < colorsOptions.length; i += 1) {
     const option = document.createElement('option');
-    option.innerText = colorsOptions[i];
+    option.innerHTML = colorsOptions[i];
     option.value = colorsOptions[i];
     coresFundo.appendChild(option);
   }
@@ -20,7 +20,7 @@ function createFontOptions() {
 
   for (let i = 0; i < colorsFontOptions.length; i += 1) {
     const option = document.createElement('option');
-    option.innerText = colorsFontOptions[i];
+    option.innerHTML = colorsFontOptions[i];
     option.value = colorsFontOptions[i];
     coresTexto.appendChild(option);
   }
@@ -31,7 +31,7 @@ function createFontSizeOptions() {
 
   for (let i = 0; i < fontSizeOptions.length; i += 1) {
     const option = document.createElement('option');
-    option.innerText = fontSizeOptions[i];
+    option.innerHTML = fontSizeOptions[i];
     option.value = fontSizeOptions[i];
     tamanhoFonte.appendChild(option);
   }
@@ -42,7 +42,7 @@ function createAlignOptions() {
 
   for (let i = 0; i < fontAlignOptions.length; i += 1) {
     const option = document.createElement('option');
-    option.innerText = fontAlignOptions[i];
+    option.innerHTML = fontAlignOptions[i];
     option.value = fontAlignOptions[i];
     linhaEspaco.appendChild(option);
   }
@@ -53,7 +53,7 @@ function createFontTipeOptions() {
 
   for (let i = 0; i < fontTipeOptions.length; i += 1) {
     const option = document.createElement('option');
-    option.innerText = fontTipeOptions[i];
+    option.innerHTML = fontTipeOptions[i];
     option.value = fontTipeOptions[i];
     tiposFonte.appendChild(option);
   }
