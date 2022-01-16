@@ -1,17 +1,10 @@
-// Pensando em como fazer isso de forma mais complicada, fazendo o for, calculando qual o menor numero e então retornando a lista :V
+/* Metodo array.sort - costuma ordenar as listas, mas ela vê apenas o primeiro numero*/
 
 const oddsAndEvens = [13, 3, 4, 10, 7, 2];
-
-const sortOddsAndEvens = () => {
-  for (let i = 0; i < oddsAndEvens.length; i+=1) {
-      return oddsAndEvens[i];        
-  }
-}
-
-console.log(oddsAndEvens); 
-
-const sortedArray = sortOddsAndEvens();
-console.log(`Os números ${sortedArray} se encontram ordenados de forma crescente !`);
+oddsAndEvens.sort(function(a, b) {
+  return a - b;
+  });
+console.log(oddsAndEvens);
 
 /* Versão do Gabarito
 
