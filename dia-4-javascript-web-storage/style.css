@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  margin-top: 1.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 30%;
+  justify-content: center;
+  margin: 20px;
+}
+
+p {
+  text-align: justify;
+}
+
+h2 {
+  text-align: center;
+  line-height: 2;
+}
+
+#subtitle {
+  text-align: center;
+}
+
+#principal {
+  display: flex;
+  justify-content: center;
+}
+
+#secundaria{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 30%;
+  align-content: center;
+  justify-content: center;
+  margin-right: 35%;
+  margin-left: 35%;
+}
