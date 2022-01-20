@@ -182,6 +182,7 @@ function authorUnique() {
   (bookSome.author.birthYear === book.author.birthYear) && (bookSome.author.name !== book.author.name)));
 };
  
+
 console.log('Autores que nasceram no mesmo ano:')
 console.log(authorUnique());
 console.log(' ')
