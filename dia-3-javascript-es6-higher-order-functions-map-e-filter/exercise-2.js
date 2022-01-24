@@ -71,5 +71,5 @@ function nameAndAge() {
   .sort((a, b) => a.age - b.age);
 }
 
-console.log(nameAndAge);
+console.log(nameAndAge());
   
