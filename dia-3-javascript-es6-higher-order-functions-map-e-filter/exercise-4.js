@@ -66,5 +66,6 @@ const books = [
     return books.filter((book) => book.releaseYear < data - 60)
     .sort((a, b) => a.releaseYear - b.releaseYear);
   }
+   
+  console.log(oldBooksOrdered());
   
-  console.log("Livros com mais de 60 anos", oldBooksOrdered());

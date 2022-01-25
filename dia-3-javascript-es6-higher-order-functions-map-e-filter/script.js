@@ -129,16 +129,15 @@ console.log("Livros com mais de 60 anos", oldBooksOrdered());
 console.log('');
 
 // 5 - Crie um array em ordem alfabética apenas com os nomes de todas as pessoas autoras de ficção científica ou fantasia.
-const expectedResult = [
-  'Frank Herbert',
-  'George R. R. Martin',
-  'Isaac Asimov',
-  'J. R. R. Tolkien',
-];
-
 function fantasyOrScienceFictionAuthors() {
-  // escreva seu código aqui
+  return books
+  .filter((book) => book.genre === 'Ficção Científica' || book.genre === 'Fantasia' )
+  .map((book) => book.author.name).sort();
 }
+
+console.log("Autores de Livros de Fantasia e Ficção Cientifica"); 
+console.log(fantasyOrScienceFictionAuthors());
+console.log('');
 
 /* //6 - Crie um array com o nome de todos os livros com mais de 60 anos de publicação.
 const expectedResult = [
