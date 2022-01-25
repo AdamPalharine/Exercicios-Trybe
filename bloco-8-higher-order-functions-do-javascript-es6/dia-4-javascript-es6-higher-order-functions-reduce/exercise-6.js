@@ -11,14 +11,3 @@ function studentAverage() {
 };
 
 console.log(studentAverage());
-
-/* function studentAverage() {
-  const nomeMaisNota = students.map((student, index) => ({
-    name: student,
-    nota: (grades[index].reduce((acc, curr) => acc + curr, 0) / grades[index].length),
-  }));
-  return nomeMaisNota;
-};
-
-console.log(studentAverage());
- */
