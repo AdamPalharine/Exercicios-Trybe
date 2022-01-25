@@ -94,7 +94,7 @@ function fantasyOrScienceFiction() {
 console.log(fantasyOrScienceFiction());
 console.log(' ');
 
-/* // 4 - Crie um array ordenado pelos livros com mais de 60 anos de publicação e ordene-o pelo livro mais velho.
+// 4 - Crie um array ordenado pelos livros com mais de 60 anos de publicação e ordene-o pelo livro mais velho.
 const expectedResult = [
   {
     id: 6,
@@ -120,8 +120,13 @@ const expectedResult = [
 ];
 
 function oldBooksOrdered() {
-  // escreva seu código aqui
+  const data = new Date().getFullYear();
+  return books.filter((book) => book.releaseYear < data - 60)
+  .sort((a, b) => a.releaseYear - b.releaseYear);
 }
+
+console.log("Livros com mais de 60 anos", oldBooksOrdered());
+console.log('');
 
 // 5 - Crie um array em ordem alfabética apenas com os nomes de todas as pessoas autoras de ficção científica ou fantasia.
 const expectedResult = [
@@ -135,7 +140,7 @@ function fantasyOrScienceFictionAuthors() {
   // escreva seu código aqui
 }
 
-//6 - Crie um array com o nome de todos os livros com mais de 60 anos de publicação.
+/* //6 - Crie um array com o nome de todos os livros com mais de 60 anos de publicação.
 const expectedResult = [
   'O Senhor dos Anéis',
   'Fundação',

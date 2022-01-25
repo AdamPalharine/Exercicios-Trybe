@@ -61,4 +61,10 @@ const books = [
   },
   ];
   
-  // Adicione o código do exercício aqui:
+  function oldBooksOrdered() {
+    const data = new Date().getFullYear();
+    return books.filter((book) => book.releaseYear < data - 60)
+    .sort((a, b) => a.releaseYear - b.releaseYear);
+  }
+  
+  console.log("Livros com mais de 60 anos", oldBooksOrdered());
