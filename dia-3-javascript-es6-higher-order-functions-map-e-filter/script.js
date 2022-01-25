@@ -139,18 +139,22 @@ console.log("Autores de Livros de Fantasia e Ficção Cientifica");
 console.log(fantasyOrScienceFictionAuthors());
 console.log('');
 
-/* //6 - Crie um array com o nome de todos os livros com mais de 60 anos de publicação.
-const expectedResult = [
+//6 - Crie um array com o nome de todos os livros com mais de 60 anos de publicação.
+/* const expectedResult = [
   'O Senhor dos Anéis',
   'Fundação',
   'O Chamado de Cthulhu',
-];
+]; */
 
 function oldBooks() {
-  // escreva seu código aqui
+  const data = new Date().getFullYear();
+  return books.filter((book) => book.releaseYear < data - 60)
+  .map((book) => book.name);
 }
 
-//7 - Encontre o nome do livro escrito pela pessoa cujo nome registrado começa com três iniciais.
+console.log(oldBooks());
+
+/* //7 - Encontre o nome do livro escrito pela pessoa cujo nome registrado começa com três iniciais.
 const expectedResult = 'O Senhor dos Anéis';
 
 function authorWith3DotsOnName() {
