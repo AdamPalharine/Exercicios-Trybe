@@ -3,6 +3,7 @@ const coresTexto = document.querySelector('#texto');
 const tamanhoFonte = document.querySelector('#tamanho');
 const linhaEspaco = document.querySelector('#linhas');
 const tiposFonte = document.querySelector('#fontes');
+const listOptions = document.getElementsByTagName('option');
 
 function createColorsOptions() {
   const colorsOptions = ['---', 'Azul', 'Vermelho', 'Amarelo', 'Verde'];
@@ -71,17 +72,32 @@ function criandoSelected() {
 
 // movendo selected (funciona, mas movendo pro lugar errado)
 
+/* 
 function movendoSelected(event) {
   let techElement = document.getElementsByClassName('selected');
   const evento = event.target;
   techElement[0].classList.remove('selected');
   evento.classList.add('selected');
-}
+} 
+*/
 
-// impedindo q vá para o pai (não dá certo)
-coresFundo.addEventListener('click', function (e) {
-  e.stopPropagation();
+// não funciona (remove, mas não adiciona)
+coresFundo.addEventListener('change', (event) => {
+  for (const i of listOptions) {
+    i.classList.remove('selected');
+  }
+  event.target.classList.add('selected');
+  event.currentTarget.classList.remove('selected');
 });
+
+// tbm não
+/* function movendoSelected(event) {
+  for (const i of listOptions) {
+    i.classList.remove('selected');
+  }
+  event.target.classList.add('selected');
+  event.currentTarget.classList.remove('selected');
+} */
 
 createColorsOptions();
 createFontOptions();
@@ -89,8 +105,8 @@ createFontSizeOptions();
 createAlignOptions();
 createFontTipeOptions();
 criandoSelected();
-coresFundo.addEventListener('change', movendoSelected);
-coresTexto.addEventListener('change', movendoSelected);
-tamanhoFonte.addEventListener('change', movendoSelected);
-linhaEspaco.addEventListener('change', movendoSelected);
-tiposFonte.addEventListener('change', movendoSelected);
+// coresFundo.addEventListener('change', movendoSelected);
+// coresTexto.addEventListener('change', movendoSelected);
+// tamanhoFonte.addEventListener('change', movendoSelected);
+// linhaEspaco.addEventListener('change', movendoSelected);
+// tiposFonte.addEventListener('change', movendoSelected);
