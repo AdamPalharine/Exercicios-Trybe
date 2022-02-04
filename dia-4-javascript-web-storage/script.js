@@ -59,7 +59,7 @@ function createFontTipeOptions() {
   }
 }
 
-// selected em cada selected
+// selected em cada objeto
 
 function criandoSelected() {
   coresFundo.children[0].classList.add('selected');
@@ -77,6 +77,11 @@ function movendoSelected(event) {
   techElement[0].classList.remove('selected');
   evento.classList.add('selected');
 }
+
+// impedindo q vá para o pai (não dá certo)
+coresFundo.addEventListener('click', function (e) {
+  e.stopPropagation();
+});
 
 createColorsOptions();
 createFontOptions();
