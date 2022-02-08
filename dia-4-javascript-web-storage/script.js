@@ -4,9 +4,13 @@ const tamanhoFonte = document.querySelector('#tamanho');
 const linhaEspaco = document.querySelector('#linhas');
 const tiposFonte = document.querySelector('#fontes');
 const listOptions = document.getElementsByTagName('option');
+const bodyPage = document.getElementsByTagName('body');
+const title1 = document.getElementsByTagName('h1');
+const title2 = document.getElementsByTagName('h2');
+const paragraph = document.getElementsByTagName('p');
 
 function createColorsOptions() {
-  const colorsOptions = ['---', 'Azul', 'Vermelho', 'Amarelo', 'Verde'];
+  const colorsOptions = ['---', 'Blue', 'Red', 'Yellow', 'Green'];
 
   for (let i = 0; i < colorsOptions.length; i += 1) {
     const option = document.createElement('option');
@@ -17,7 +21,7 @@ function createColorsOptions() {
 }
 
 function createFontOptions() {
-  const colorsFontOptions = ['---', 'Azul', 'Vermelho', 'Preto', 'Branco'];
+  const colorsFontOptions = ['---', 'Blue', 'Red', 'Black', 'White'];
 
   for (let i = 0; i < colorsFontOptions.length; i += 1) {
     const option = document.createElement('option');
@@ -39,7 +43,7 @@ function createFontSizeOptions() {
 }
 
 function createAlignOptions() {
-  const fontAlignOptions = ['---', '1', 'normal', '1.5', '2.0', '3.0'];
+  const fontAlignOptions = ['---', '5pt', '10pt', '15pt', '20pt', '25pt'];
 
   for (let i = 0; i < fontAlignOptions.length; i += 1) {
     const option = document.createElement('option');
@@ -61,7 +65,6 @@ function createFontTipeOptions() {
 }
 
 // selected em cada objeto
-
 function criandoSelected() {
   coresFundo.children[0].classList.add('selected');
   coresTexto.children[0].classList.add('selected');
@@ -70,25 +73,154 @@ function criandoSelected() {
   tiposFonte.children[0].classList.add('selected');
 }
 
-// movendo selected (funciona, mas movendo pro lugar errado)
+coresFundo.addEventListener('change', (event) => {
+  bodyPage[0].style.backgroundColor = event.target.value;
+  localStorage.setItem('backColor', event.target.value); // localStorage.setItem(key, event)
+});
 
-/* 
-function movendoSelected(event) {
+function retornoBackground() {
+  bodyPage[0].style.backgroundColor = localStorage.getItem('backColor');
+};
+
+coresTexto.addEventListener('change', (event) => {
+  for (let i = 0; i < title1.length; i += 1) {
+    title1[i].style.color = event.target.value; 
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.color = event.target.value;
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.color = event.target.value;
+  }
+  localStorage.setItem('textColor', event.target.value);
+});
+
+function retornotextColor() {
+  for (let i = 0; i < title1.length; i+= 1) {
+    title1[i].style.color = localStorage.getItem('textColor');  
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.color = localStorage.getItem('textColor');  
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.color = localStorage.getItem('textColor');  
+  }
+};
+
+tamanhoFonte.addEventListener('change', (event) => {
+  for (let i = 0; i < title1.length; i += 1) {
+    title1[i].style.fontSize = event.target.value; 
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.fontSize = event.target.value;
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.fontSize = event.target.value;
+  }
+  localStorage.setItem('fontSiz', event.target.value);
+});
+
+function retornofontSize() {
+  for (let i = 0; i < title1.length; i+= 1) {
+    title1[i].style.fontSize = localStorage.getItem('fontSiz');  
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.fontSize = localStorage.getItem('fontSiz');  
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.fontSize = localStorage.getItem('fontSiz');  
+  }
+};
+
+linhaEspaco.addEventListener('change', (event) => {
+  for (let i = 0; i < title1.length; i += 1) {
+    title1[i].style.lineHeight = event.target.value; 
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.lineHeight = event.target.value;
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.lineHeight = event.target.value;
+  }
+  localStorage.setItem('linhaSpace', event.target.value);
+});
+
+function retornoLineHeight() {
+  for (let i = 0; i < title1.length; i+= 1) {
+    title1[i].style.color = localStorage.getItem('linhaSpace');  
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.color = localStorage.getItem('linhaSpace');  
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.color = localStorage.getItem('linhaSpace');  
+  }
+};
+
+tiposFonte.addEventListener('change', (event) => {
+  for (let i = 0; i < title1.length; i += 1) {
+    title1[i].style.fontFamily = event.target.value; 
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.fontFamily = event.target.value;
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.fontFamily = event.target.value;
+  }
+  localStorage.setItem('familyFont', event.target.value);
+});
+
+function retornoFontFamily() {
+  for (let i = 0; i < title1.length; i+= 1) {
+    title1[i].style.fontFamily = localStorage.getItem('familyFont');  
+  }
+  for (let i = 0; i < title2.length; i += 1) {
+    title2[i].style.fontFamily = localStorage.getItem('familyFont');  
+  }
+  for (let i = 0; i < paragraph.length; i += 1) {
+    paragraph[i].style.fontFamily = localStorage.getItem('familyFont');  
+  }
+};
+
+createColorsOptions();
+createFontOptions();
+createFontSizeOptions();
+createAlignOptions();
+createFontTipeOptions();
+criandoSelected();
+localStorage.getItem('backColor');
+localStorage.getItem('textColor');
+localStorage.getItem('fontSiz');
+localStorage.getItem('linhaSpace');
+localStorage.getItem('familyFont');
+retornoBackground();
+retornoFontFamily();
+retornofontSize();
+retornotextColor();
+retornoLineHeight();
+
+// não tava funcionando
+
+// movendo selected (funciona, mas movendo pro lugar errado)
+/* function movendoSelected(event) {
   let techElement = document.getElementsByClassName('selected');
   const evento = event.target;
   techElement[0].classList.remove('selected');
   evento.classList.add('selected');
-} 
+  console.log(evento);
+}
 */
 
 // não funciona (remove, mas não adiciona)
-coresFundo.addEventListener('change', (event) => {
+/* coresFundo.addEventListener('change', (event) => {
   for (const i of listOptions) {
     i.classList.remove('selected');
   }
   event.target.classList.add('selected');
   event.currentTarget.classList.remove('selected');
-});
+  bodyPage.style.backgroundColor = event.target.value;
+  console.log(event.target.value);
+}); */  
 
 // tbm não
 /* function movendoSelected(event) {
@@ -98,13 +230,6 @@ coresFundo.addEventListener('change', (event) => {
   event.target.classList.add('selected');
   event.currentTarget.classList.remove('selected');
 } */
-
-createColorsOptions();
-createFontOptions();
-createFontSizeOptions();
-createAlignOptions();
-createFontTipeOptions();
-criandoSelected();
 // coresFundo.addEventListener('change', movendoSelected);
 // coresTexto.addEventListener('change', movendoSelected);
 // tamanhoFonte.addEventListener('change', movendoSelected);
