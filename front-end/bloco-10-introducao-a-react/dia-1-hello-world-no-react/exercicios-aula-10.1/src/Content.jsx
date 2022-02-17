@@ -5,7 +5,7 @@ const conteudos = [
 		conteudo: 'High Order Functions',
 		bloco: 8,
 		status: 'Aprendido'
-	},
+  },
 	{
 		conteudo: 'Composicao de Componentes',
 		bloco: 11,
@@ -25,17 +25,17 @@ const conteudos = [
 
 class Content extends React.Component {
 	render() {
-			return (
-					<div className='content'>
-						{conteudos.map((e) => (
-							<div key={e.conteudo} className='card'>
-								<h2>{`O conteudo é: ${e.conteudo}`}</h2>
-								<p>{`Status: ${e.status}`}</p>
-								<p>{`Bloco: ${e.bloco}`}</p>
-							</div>
-						))}
-					</div>
-			);
+    return (
+    <div className='content'>
+      {conteudos.map((e) => (
+      <div key={e.conteudo} className='card'>
+        <p><b>{`O conteudo é: ${e.conteudo}`}</b></p>
+				<p>{`Status: ${e.status}`}</p>
+				<p>{`Bloco: ${e.bloco}`}</p>
+      </div>
+      ))}
+    </div>
+    );
 	}
 }
 
