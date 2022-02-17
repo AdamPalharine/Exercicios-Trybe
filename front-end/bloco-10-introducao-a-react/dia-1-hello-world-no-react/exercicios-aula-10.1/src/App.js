@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 } 
 
-// não entendi se precisa dessa parte é necessária...
+// não entendi se essa parte é necessária...
 function App() {
   return (
     <div className="App">
