@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+body {
+  background-image: url(/public/pokedex.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 42em;
+}
+
 header {
   text-align: center;
 }
