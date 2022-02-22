@@ -9,7 +9,7 @@ import pokemons from './data';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <Header />
         <Pokedex pokemons={pokemons} />
       </div>
