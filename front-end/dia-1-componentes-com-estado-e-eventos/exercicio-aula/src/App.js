@@ -2,8 +2,8 @@ import React from 'react';
 
 import './App.css';
 
-import Header from './Components/Header';
-import Pokedex from './Components/Pokedex';
+import Header from './components/Header';
+import Pokedex from './components/Pokedex';
 import pokemons from './data';
 
 class App extends React.Component {
