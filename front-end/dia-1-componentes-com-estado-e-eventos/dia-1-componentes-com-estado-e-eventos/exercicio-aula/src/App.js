@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1> Olá mundo </h1>
+        <h1> Aperte o botão </h1>
         <div>
           <button onClick={handleClick}> botão 1</button>
           <button onClick={handleClick}> botão 2</button>
@@ -39,7 +39,7 @@ class App extends React.Component {
     console.log(this);
     return (
       <div>
-        <h1> Olá mundo </h1>
+        <h1> Aperte o botão </h1>
         <div>
           <button onClick={this.handleClick}> botão 1</button>
         </div>
@@ -68,7 +68,7 @@ class App extends React.Component {
     console.log(this)
     return (
       <div>
-        <h1> Olá mundo </h1>
+        <h1> Aperte o botão </h1>
         <div>
           <button onClick={this.handleClick}> botão 1</button>
         </div>
@@ -84,20 +84,32 @@ class App extends React.Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this) 
-    console.log('Eu primeiro')
+    this.state = {
+      numeroDeClicks: 0
+    }
   }
 
   handleClick() {
-    console.log(this)
-    console.log('Clicou no botão')
+    // NUNCA! COLOQUE O 'THIS STATE' AQUI!!!!!!
+    // O REACT É ASSINCRONO E POR CONTA DISSONÃO TERIA GARANTIA QUE SERIA STARTADO.
+    /* this.setState({
+      numeroDeClicks: 1 */
+      // o exemplo anterior funciona, masnão soma os click
+      // a de baixo faz isso
+      // o _ antes de props é para dizer que ele não será utilizado. 
+    this.setState((estadoAnterior, _props) => ({
+      numeroDeClicks: estadoAnterior.numeroDeClicks + 1
+    }))
   }
+
+
   render() {
     console.log(this)
     return (
       <div>
-        <h1> Olá mundo </h1>
+        <h1> Aperte o botão </h1>
         <div>
-          <button onClick={this.handleClick}> botão 1</button>
+          <button onClick={this.handleClick}>O botão foi apertado: {this.state.numeroDeClicks} vezes </button>
         </div>
       </div>
     );
