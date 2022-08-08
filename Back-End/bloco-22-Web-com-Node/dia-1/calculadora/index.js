@@ -1,4 +1,4 @@
-const operations = require('../operacoes');
+const operations = require('./operacoes');
 const readLine = require('readline-sync')
     //extenção para rodar no terminal
 
