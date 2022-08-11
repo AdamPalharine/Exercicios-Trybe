@@ -15,12 +15,32 @@ const books = [
   {id: 6, title: 'A Mentira Perfeita', author: 'Carina Rissi'},
 ]
 
+function authMiddleware(req, res, next) {
+  // Caso for pegar o token pelo URL
+  // const { token } = req.query;
+
+  // Caso vá pegar pelo Body
+  // nesse caso deve adicionar "token": "nomequalquer" ao Body
+  // const { token } = req.body;
+
+  //Caso vá pegar do HEADER (Modo mais seguro)
+  //Ir em KEY = token e VALUE = tokensupersecretos
+  const { token } = req.headers;
+  // console.log('token');
+  if (token !== 'tokensupersecreto') {
+    return res.status(401).send('Usuário não Autorizado')
+  }
+
+  next();
+  // Se der errado vai para NOT FOUND, Se der certo continua como era
+}
+
 app.get('/', (req, res) => {
   res.send('Hello, World!');
   // oq eu quero que minha requisição faça, no caso, qual a resposta que eu espero receber
 });
 
-app.get('/books', (req, res) => {
+app.get('/books', authMiddleware, (req, res) => {
   const { limit } = req.query;
   const result = books.slice(0, limit || books.length);
   res.status(200).json(result);
@@ -29,7 +49,7 @@ app.get('/books', (req, res) => {
 });
 
 /* rota com indicadores de parametros */
-app.get('/books/:id', (req, res) => {
+app.get('/books/:id', authMiddleware, (req, res) => {
   const { id } = req.params;
   const book = books.find(book => book.id === +id);
   //tem que tranformar para Number, pois vem em String
@@ -43,7 +63,7 @@ app.get('/books/:id', (req, res) => {
 
 // Nova rota com POST - para adicionar coisas
 // Como é uma nova rota do tipo POST, não há problema em ter o mesmo nome da rota GET
-app.post('/books', (req, res) => {
+app.post('/books', authMiddleware, (req, res) => {
   const { title, author} = req.body;
 
   const book = {id: Date.now(), title, author};
