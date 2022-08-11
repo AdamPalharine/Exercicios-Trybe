@@ -1,4 +1,5 @@
 const express = require('express');
+const middlewares = require('./middlewares');
 const app = express();
 
 app.use(express.json());
@@ -15,41 +16,38 @@ const books = [
   {id: 6, title: 'A Mentira Perfeita', author: 'Carina Rissi'},
 ]
 
-function authMiddleware(req, res, next) {
-  // Caso for pegar o token pelo URL
-  // const { token } = req.query;
-
-  // Caso vá pegar pelo Body
-  // nesse caso deve adicionar "token": "nomequalquer" ao Body
-  // const { token } = req.body;
-
-  //Caso vá pegar do HEADER (Modo mais seguro)
-  //Ir em KEY = token e VALUE = tokensupersecretos
-  const { token } = req.headers;
-  // console.log('token');
-  if (token !== 'tokensupersecreto') {
-    return res.status(401).send('Usuário não Autorizado')
-  }
-
-  next();
-  // Se der errado vai para NOT FOUND, Se der certo continua como era
-}
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
   // oq eu quero que minha requisição faça, no caso, qual a resposta que eu espero receber
 });
 
-app.get('/books', authMiddleware, (req, res) => {
-  const { limit } = req.query;
-  const result = books.slice(0, limit || books.length);
-  res.status(200).json(result);
+app.get('/books', (req, res) => {
+  // mid de erro, recebe quatro paramentros OBRIGATÓRIAMENTE
+  // throw new Error('Erro ao acessar o banco de dados');
+  // apenas dessa for, acaba vazando dados
+  // const { limit } = req.query;
+  // const result = books.slice(0, limit || books.length);
+  // res.status(200).json(result);
   // equivalente ao send, com a diferença de onde ele vai retornar no servidor
-  // status 200 indica que tudo esta certo 
+  // status 200 indica que tudo esta certo
+
+  try {
+    throw new Error('Erro ao acessar o banco de dados');
+    const { limit } = req.query;
+    const result = books.slice(0, limit || books.length);
+    res.status(200).json(result);
+  } catch (error) {
+    next();
+    // o NEXT chama o midd de erro que estiver a seguir no código
+    // res.status(500).json('Internal Server Error');
+    // mover para a pasta de middleware
+  }
+
 });
 
 /* rota com indicadores de parametros */
-app.get('/books/:id', authMiddleware, (req, res) => {
+app.get('/books/:id', (req, res) => {
   const { id } = req.params;
   const book = books.find(book => book.id === +id);
   //tem que tranformar para Number, pois vem em String
@@ -61,9 +59,13 @@ app.get('/books/:id', authMiddleware, (req, res) => {
   res.status(200).json(book);
 });
 
+app.use(middlewares.authMiddleware);
+// agora todas as rodas pedem por autorização do token, não precisaria estar assim >> app.get('/books', authMiddleware, (req, res)
+// dependendo de onde for inserido, as validações a cima não serão implementadas
+
 // Nova rota com POST - para adicionar coisas
 // Como é uma nova rota do tipo POST, não há problema em ter o mesmo nome da rota GET
-app.post('/books', authMiddleware, (req, res) => {
+app.post('/books', (req, res) => {
   const { title, author} = req.body;
 
   const book = {id: Date.now(), title, author};
@@ -71,5 +73,8 @@ app.post('/books', authMiddleware, (req, res) => {
   res.status(200).send('Cadastrado');
   res.send('Olá');
 });
+
+app.use(middlewares.errorMiddlewares);
+// o midd de erro deve vir no final para englobar todos os erros do código
 
 app.listen(PORT, () => console.log(`Ouvindo na porta ${PORT}`));
