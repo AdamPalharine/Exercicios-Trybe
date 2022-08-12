@@ -9,16 +9,68 @@ app.use(express.json());
 const connection = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  database: 'descobrir-depois',
+  database: 'nome_do_banco',
   password: 'password' // tem que ser a senha certa
 }); 
 // parametros de comparação (oq vai dentro das chaves) geralmente são Objetos
 // isso deveria fazer a conecção com o MYSQL
+// createPoll é um tipo de coneção co o MySql e exevutar as QUERY
 
 //construção da API
-app.get('/characters', (req, res) => {
-  const result = connection.execute('SELECT * FROM characters') // dando quais informações eu quero da tabela
-  res.status(200).json(result);
+app.get('/characters', async (req, res) => {
+  // lembrar que o try e o catch são informações para o caso de nossa aplicação venha a dar algum tipo de erro
+  try {
+    const [characters] = await connection.execute('SELECT * FROM characters'); // dando quais informações eu quero da tabela
+    // desestruturando para pegar os arrays
+    res.status(200).json(characters);
+  } catch (error) {
+    console.log(error) // pode ajudar a encontrar qual erro está dando na aplicação
+    res.status(500).json({ message: 'Server error'});
+  }
+});
+  
+app.post('/characters', async (req, res) => {
+  try {
+    const { name, cartoon } = req.body;
+    const [rows] = await connection.execute(
+      'INSERT INTO nome_do_banco.nome-da-tabela (name, cartoon) VALUES (?, ?);',
+      [name, cartoon]
+      );
+    // const para inserir dados em um banco
+    // ? > valores referentes as interrogações vão fora da string
+    // a ordem nas chaves importa, é uma interrogação por parametro
+    const resultado = {
+      // dados do personagem/objeto
+      // traz um objeto com as informações importantes
+      id: rows.insertId,
+      name,
+      cartoon,
+    };
+    // console.log(rows);
+    res.status(200).json(rows);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error'});
+  }
+});
+
+//pegar informações pelo ID
+app.get('/characters/:id', async (req, res) => {
+  try {
+    const { id } = req.params; 
+    // ou const id = req.params.id; 
+    // ou (eu acho pelo menos) const { id } = req.query;
+    const [rows] = await connection.execute(
+      'SELECT * FROM characters WHERE id = ?;',
+      [id] // array de BINDs? ou algo assim
+      );
+      console.log(rows); // deverá vir apenas os dados com o id informado
+    res.status(200).json(rows);
+    // res.status(200).json(rows[0]); para vir apenas a primeira informação do array 
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error'});
+  }
 });
 
 app.listen(3001, () => console.log('Porta 3001 conectada'));
