@@ -22,10 +22,10 @@ app.get('/characters', async (req, res) => {
   try {
     const [characters] = await connection.execute('SELECT * FROM characters'); // dando quais informações eu quero da tabela
     // desestruturando para pegar os arrays
-    res.status(200).json(characters);
+    return res.status(200).json(characters);
   } catch (error) {
     console.log(error); // pode ajudar a encontrar qual erro está dando na aplicação
-    res.status(500).json({ message: 'Server error'});
+    return res.status(500).json({ message: 'Server error'});
   }
 });
   
@@ -47,10 +47,10 @@ app.post('/characters', async (req, res) => {
       cartoon,
     };
     // console.log(rows);
-    res.status(200).json(rows);
+    return res.status(200).json(rows);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Server error'});
+    return res.status(500).json({ message: 'Server error'});
   }
 });
 
@@ -67,11 +67,11 @@ app.get('/characters/:id', async (req, res) => {
       [id] // array de BINDs? ou algo assim
       );
       console.log(rows); // deverá vir apenas os dados com o id informado
-    res.status(200).json(rows);
+      return res.status(200).json(rows);
     // res.status(200).json(rows[0]); para vir apenas a primeira informação do array 
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Server error'});
+    return res.status(500).json({ message: 'Server error'});
   }
 });
 
@@ -89,7 +89,7 @@ app.put('/characters/:id', async (req, res) => {
     // id: Number(id) para ao inves de retornar uma string, retorna um number
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Server error'});
+    return res.status(500).json({ message: 'Server error'});
   }
 });
 
@@ -101,10 +101,10 @@ app.delete('/characters/:id', async (req, res) => {
       'DELETE FROM characters WHERE id=?;' [id]
     );
     console.log(result);
-    res.status(200).json({ message: 'Informação Deletada'});
+    return res.status(200).json({ message: 'Informação Deletada'});
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Server error'});
+    return res.status(500).json({ message: 'Server error'});
   }
 });
 
