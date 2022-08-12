@@ -24,7 +24,7 @@ app.get('/characters', async (req, res) => {
     // desestruturando para pegar os arrays
     res.status(200).json(characters);
   } catch (error) {
-    console.log(error) // pode ajudar a encontrar qual erro está dando na aplicação
+    console.log(error); // pode ajudar a encontrar qual erro está dando na aplicação
     res.status(500).json({ message: 'Server error'});
   }
 });
@@ -33,7 +33,7 @@ app.post('/characters', async (req, res) => {
   try {
     const { name, cartoon } = req.body;
     const [rows] = await connection.execute(
-      'INSERT INTO nome_do_banco.nome-da-tabela (name, cartoon) VALUES (?, ?);',
+      'INSERT INTO nome_do_banco.nome_da_tabela (name, cartoon) VALUES (?, ?);',
       [name, cartoon]
       );
     // const para inserir dados em um banco
@@ -54,12 +54,14 @@ app.post('/characters', async (req, res) => {
   }
 });
 
-//pegar informações pelo ID
+// PEGAR INFORMAÇÕES PELO ID
 app.get('/characters/:id', async (req, res) => {
   try {
     const { id } = req.params; 
     // ou const id = req.params.id; 
     // ou (eu acho pelo menos) const { id } = req.query;
+    // params = /characters/:id obrigada a colocar o dado 
+    // query = /character/? o dado é opcional
     const [rows] = await connection.execute(
       'SELECT * FROM characters WHERE id = ?;',
       [id] // array de BINDs? ou algo assim
@@ -67,6 +69,39 @@ app.get('/characters/:id', async (req, res) => {
       console.log(rows); // deverá vir apenas os dados com o id informado
     res.status(200).json(rows);
     // res.status(200).json(rows[0]); para vir apenas a primeira informação do array 
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error'});
+  }
+});
+
+// PARA FAZER EDIÇÕES
+app.put('/characters/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, cartoon } = req.body
+    const [result] = await connection.execute(
+      'UPDATE onde_quero_editar SET name = ?, cartoon = ? WHERE id = ?;',
+      [name, cartoon, id]
+      );
+    console.log(result);
+    return res.status(200).json({ id: Number(id), name, cartoon});
+    // id: Number(id) para ao inves de retornar uma string, retorna um number
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error'});
+  }
+});
+
+// PARA DELETAR
+app.delete('/characters/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await connection.execute(
+      'DELETE FROM characters WHERE id=?;' [id]
+    );
+    console.log(result);
+    res.status(200).json({ message: 'Informação Deletada'});
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Server error'});
