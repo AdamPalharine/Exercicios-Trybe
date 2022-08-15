@@ -17,7 +17,7 @@ const create = async (name, cartoon) => {
 
 const getById = async (id) => {
   const rows = await characterModel.getById(id);
-  return rows;
+  return rows[0];
 };
 
 const edit = async ({ id, name, cartoon }) => {
