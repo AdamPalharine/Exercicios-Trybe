@@ -1,10 +1,10 @@
-const characterModel = require('../models/characterModels');
+const characterService = require('../services/characterService');
 
 const ERROR_MESSAGE = 'Server error';
 
 const getAll = async (_req, res) => {
   try {
-    const characters = await characterModel.getAll(); 
+    const characters = await characterService.getAll(); 
     return res.status(200).json(characters);
   } catch (error) {
     console.log(error);
@@ -15,14 +15,8 @@ const getAll = async (_req, res) => {
 const create = async (req, res) => {
   const { name, cartoon } = req.body;
   try {
-    const [rows] = await characterModel.create();
-    const resultado = {
-      id: rows.insertId,
-      name,
-      cartoon,
-    };
-    // console.log(rows);
-    return res.status(200).json(rows);
+    const resultado = await characterService.create(name, cartoon);
+    return res.status(200).json(resultado);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: ERROR_MESSAGE });
@@ -32,8 +26,7 @@ const create = async (req, res) => {
 const getById = async (req, res) => {
   const { id } = req.params; 
   try {
-    const rows = await characterModel.getById(id);
-      console.log(rows);
+    const rows = await characterService.getById(id);
       return res.status(200).json(rows);
   } catch (error) {
     console.log(error);
@@ -45,8 +38,7 @@ const edit = async (req, res) => {
   const { id } = req.params;
   const { name, cartoon } = req.body
   try {
-    const result = await characterModel.edit({ id, name, cartoon });
-    console.log(result);
+    await characterService.edit({ id, name, cartoon });
     return res.status(200).json({ id: Number(id), name, cartoon});
   } catch (error) {
     console.log(error);
@@ -57,8 +49,7 @@ const edit = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await characterModel.removeInfo(id);
-    console.log(result);
+    await characterService.remove(id);
     return res.status(200).json({ message: 'Informação Deletada'});
   } catch (error) {
     console.log(error);

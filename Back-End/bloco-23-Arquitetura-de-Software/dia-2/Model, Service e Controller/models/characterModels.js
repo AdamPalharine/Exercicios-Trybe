@@ -35,7 +35,7 @@ const edit = async (name, cartoon, id) => {
   return characters;
 };
 
-const removeInfo = async (id) => {
+const remove = async (id) => {
   const [characters] = await connection.execute(
     'DELETE FROM characters WHERE id=?;' [id]
     );
@@ -47,5 +47,5 @@ module.exports = {
   create,
   getById,
   edit,
-  removeInfo
+  remove
 }
